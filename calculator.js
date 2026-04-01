@@ -201,7 +201,7 @@ After completing all TODOs, test your calculator:
 
   node calculator.js subtract 20 5 3
   Expected output: Result: 12
-
+no
   node calculator.js multiply 2 3 4
   Expected output: Result: 24
 
@@ -213,3 +213,42 @@ After completing all TODOs, test your calculator:
 
 */
 
+import { add, subtract, multiply, divide } from "./utils/operation.js";
+import { parseNumbers, isValidOperation } from "./utils/parser.js";
+
+// Get command line arguments
+const operation = process.argv[2];
+const numbersInput = process.argv.slice(3);
+
+// Validate operation
+if (!isValidOperation(operation)) {
+  console.log("Invalid operation. Use: add, subtract, multiply, or divide");
+  process.exit(1);
+}
+
+// Parse and calculate
+const nums = parseNumbers(numbersInput);
+
+if (nums.length === 0) {
+  console.log("Please provide valid numbers.");
+  process.exit(1);
+}
+
+let result;
+
+switch (operation) {
+  case "add":
+    result = add(nums);
+    break;
+  case "subtract":
+    result = subtract(nums);
+    break;
+  case "multiply":
+    result = multiply(nums);
+    break;
+  case "divide":
+    result = divide(nums);
+    break;
+}
+
+console.log(`Result: ${result}`);
