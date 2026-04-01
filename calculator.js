@@ -201,7 +201,7 @@ After completing all TODOs, test your calculator:
 
   node calculator.js subtract 20 5 3
   Expected output: Result: 12
-no
+
   node calculator.js multiply 2 3 4
   Expected output: Result: 24
 
@@ -215,7 +215,7 @@ no
 
 import { add, subtract, multiply, divide } from "./utils/operation.js";
 import { parseNumbers, isValidOperation } from "./utils/parser.js";
-
+import _ from "lodash"
 // Get command line arguments
 const operation = process.argv[2];
 const numbersInput = process.argv.slice(3);
